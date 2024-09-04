@@ -1,0 +1,239 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial;
+  
+}
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  /* background-color: white; */
+  /* color: black; */
+
+  padding: 15px;
+}
+.nav-logo{
+  font-weight: bold;
+  font-size: 25px;
+  background: url(../images/ravelogo2.png);
+  background-size: cover;
+  height: 80px;
+  background-repeat: no-repeat;
+  width: 100px;
+  background-position: center;
+}
+.nav-content{
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+
+}
+.nav-content li{
+  padding-left: 10px;
+  padding-right: 10px;
+  list-style-type: none
+}
+.nav-content li a:hover{
+  background-color: black;
+  color: white;
+  padding: 10px;
+  transition: ease-in-out;
+  transition: 2s;
+  text-decoration: none;
+}
+.nav-content a{
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
+}
+.nav-end{
+  display: flex;
+  
+}
+.nav-end i{
+  padding-left: 10px;
+  
+}
+.nav-content2 {
+  display: none;
+}
+.bars{
+  display: none;
+}
+.pricing cover{
+  padding: 200px;
+ 
+}
+
+.pricing-head{
+  text-align: center;
+  line-height: 1;
+  color: black;
+}
+.pricing{
+  display: flex;
+  justify-content: center;
+
+  gap: 10em;
+
+}
+.standard-cover{
+  
+
+  padding: 30px;
+
+}
+.standard{
+  padding: 50px;
+  background-color: black;
+  color: white;
+  line-height: 2;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Darker shadow */
+  transition: box-shadow 0.3s ease-in-out;
+  width: 100%;
+  font-size: large;
+  
+ 
+
+}
+.standard:hover{
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.3s ease-in-out;
+
+}
+.standard-head{
+  text-align:center ;
+  font-weight: bold;
+}
+.standard-btn{
+  padding: 10px;
+  border-radius: 30px;
+  width: 100%;
+  color: black;
+  background-color: whitesmoke;
+  margin-top: 20px;
+  font-weight: bold;
+
+}
+.pro-cover{
+  padding: 30px;
+
+}
+.pro{
+  padding: 50px;
+  background-color: black;
+  color: white;
+  line-height: 2;
+  border-radius: 15px;
+  /* width: 100%; */
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Darker shadow */
+  transition: box-shadow 0.3s ease-in-out;
+  width: 100%;
+
+}
+.pro:hover{
+ 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Darker shadow */
+  transition: box-shadow 0.3s ease-in-out;
+}
+.pro-head{
+  text-align:center ;
+  font-weight: bold;
+
+}
+.pro-btn{
+  padding: 10px;
+  border-radius: 30px;
+  width: 250px;
+  color: black;
+  background-color: whitesmoke;
+  margin-top: 20px;
+  font-weight: bold;
+
+}
+@media only screen and (max-width: 600px) {
+  .nav-end{
+    display: none;
+  }
+  
+  .nav-content{
+    display: none;
+
+  }
+  .pricing{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 3em;
+    
+  }
+  .standard{
+    width: 50%;
+  }
+  .pro{
+    width: 50%;
+    
+
+  }
+  .nav-content2{
+    display:block;
+  }
+  .nav-content2 ul{
+    display: block;
+    position: fixed;
+    height: 70vh;
+    z-index: 1000;
+    top: 80px;
+    left: -100%;
+    width: 100%;
+    text-align: center;
+    list-style-type: none;
+    text-decoration: none;
+    transition: all .5s;
+    
+
+
+  }
+  .nav-content2 ul.show{
+    left: 0;
+  }
+    
+  .nav-content2 li{
+    list-style: none;
+    background: #000;
+    line-height: 3;
+   
+   
+    
+
+  }
+  .nav-content2 li:hover{
+  padding: 10px;
+  
+  
+  
+
+  }
+  .nav-content2 li a{
+    text-decoration: none;
+    color: aliceblue;
+  }
+
+  .bars{
+    display: inline-block;
+    margin-left: 50%;
+    font-weight: bold;
+
+  }
+  .bars:hover{
+    box-shadow: #000;
+  }
+  .bars i{
+    display: block;
+    font-size: 40px;
+    height: 0.5vh;
+  }
+}
