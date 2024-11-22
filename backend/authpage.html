@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup & Login</title>
+    <link rel="stylesheet" href="./css/newlandingpage.css" />
+    <link rel="stylesheet" href="./css/authpage.css" />
+    <style>
+      @media screen and (max-width: 600px) {
+        .form-wrapper {
+          width: 100%;
+        }
+        .container {
+          padding: 0rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav style="background-color: #fff3e1">
+      <img
+        src="./images/ravepluglogo.png"
+        width="100px"
+        height="100px"
+        alt=""
+      />
+      <div class="rightSide">
+        <p class="time">4:46 PM GMT+1</p>
+        <!-- <button class="signIn">sign In</button> -->
+      </div>
+    </nav>
+    <div class="container">
+      <div class="form-wrapper" id="formWrapper">
+        <!-- Signup Form -->
+        <div class="form-container" id="signupFormContainer">
+          <h2>Signup</h2>
+          <form id="signupForm">
+            <div class="input-group">
+              <label for="signupEmail">Email</label>
+              <input
+                type="email"
+                id="signupEmail"
+                placeholder="Enter your email"
+                required
+              />
+              <small class="error-message" id="signupEmailError"></small>
+            </div>
+            <div class="input-group">
+              <label for="signupPassword">Password</label>
+              <input
+                type="password"
+                id="signupPassword"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <div class="input-group">
+              <label for="signupConfirmPassword">Confirm Password</label>
+              <input
+                type="password"
+                id="signupConfirmPassword"
+                placeholder="Confirm your password"
+                required
+              />
+              <small class="error-message" id="signupPasswordError"></small>
+            </div>
+            <button type="submit" class="btn">
+              <span>Signup</span>
+              <div class="spinner"></div>
+            </button>
+            <p class="toggle-text">
+              Already have an account? <span id="toggleToLogin">Login</span>
+            </p>
+          </form>
+        </div>
+
+        <!-- Login Form -->
+        <div class="form-container hidden" id="loginFormContainer">
+          <h2>Login</h2>
+          <form id="loginForm">
+            <div class="input-group">
+              <label for="loginEmail">Email</label>
+              <input
+                type="email"
+                id="loginEmail"
+                placeholder="Enter your email"
+                required
+              />
+              <small class="error-message" id="loginEmailError"></small>
+            </div>
+            <div class="input-group">
+              <label for="loginPassword">Password</label>
+              <input
+                type="password"
+                id="loginPassword"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <button type="submit" class="btn">
+              <span>Login</span>
+              <div class="spinner"></div>
+            </button>
+
+            <p class="toggle-text">
+              Don't have an account? <span id="toggleToSignup">Signup</span>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-left">
+          <h3>RavePlug</h3>
+          <p>
+            Your go-to platform for organizing and managing events effortlessly.
+            Create your party, sell tickets, and enjoy the fun!
+          </p>
+        </div>
+
+        <div class="footer-center">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Create Event</a></li>
+            <li><a href="#">How It Works</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-right">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="#"><img src="facebook-icon.png" alt="Facebook" /></a>
+            <a href="#"><img src="twitter-icon.png" alt="Twitter" /></a>
+            <a href="#"><img src="instagram-icon.png" alt="Instagram" /></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 RavePlug. All Rights Reserved.</p>
+      </div>
+    </footer>
+    <script src="./scripts/authpage.js"></script>
+  </body>
+</html>

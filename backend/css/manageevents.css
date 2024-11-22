@@ -1,0 +1,127 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fff3e1;
+}
+.partyTitle {
+  font-weight: 500;
+  font-size: 3rem;
+}
+.partyImage {
+  position: relative;
+}
+.partyImage img {
+  height: 300px;
+  width: 300px;
+}
+nav {
+  background-color: #fff3e1;
+}
+.innerCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mainContainer {
+  width: 40%;
+}
+.eventTitle {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.partyLink {
+  border: none;
+  padding: 0.8rem 1.5rem;
+  /* padding-top: 0.4rem; */
+  /* padding-bottom: 0.2rem; */
+  border-radius: 7px;
+  background-color: black;
+  cursor: pointer;
+  color: white;
+}
+.partyDetails {
+  display: flex;
+  align-items: flex-start;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: #f9ebd8;
+  justify-content: space-between;
+}
+.partyLinkGlass {
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0.5rem;
+  position: absolute;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  bottom: 3%;
+  left: 2%;
+  width: 90%;
+  color: white;
+}
+.boldenText {
+  font-weight: 800;
+  font-size: 1.3rem;
+}
+.flcont {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.theTitle {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+.sectionTitle {
+  font-size: 1.8rem;
+}
+.theTitle button {
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 7px;
+}
+.theTitle button:hover {
+  background-color: rgb(72, 72, 72);
+}
+.noguestsyet .mainText {
+  font-weight: 800;
+}
+.noguestsyet p {
+  font-weight: 300;
+}
+.noguestsyet {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-top: 2rem;
+  border-bottom: 1px solid white;
+  background-color: #f9ebd8;
+}
+@media screen and (max-width: 600px) {
+  .mainContainer {
+    width: 100%;
+  }
+  .innerCont {
+    padding: 1rem;
+    /* flex-direction: column; */
+    /* background-color: red; */
+  }
+  .partyDetails {
+    flex-direction: column;
+    align-items: center;
+  }
+  .otherDetails {
+    width: 100%;
+    /* background-color: red; */
+  }
+}

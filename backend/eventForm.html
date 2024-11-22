@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Checkout</title>
+    <link rel="stylesheet" href="/css/eventCheckout.css" />
+    <link rel="stylesheet" href="/css/newlandingpage.css" />
+    <style>
+      .create-event {
+        width: 90%;
+        padding: 15px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
+        /* background-color: rgba(255, 255, 255, 0.9); */
+        background-color: #f9ebd8;
+        transition: 0.3s;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="overallContainer">
+      <div class="gradient-background">
+        <div class="center">
+          <span class="raveplug" id="raveplug">RavePlug</span>
+          <div class="selectTicket"></div>
+          <div class="partyDetails">
+            <div class="topFlex">
+              <img
+                id="eventImage"
+                src="/images/heroImage.jpg"
+                alt="Event Image"
+              />
+              <div class="detailContent">
+                <p class="partyName" id="eventTitle">CAMPUS RAVE</p>
+                <p class="partyTime" id="eventDate">
+                  Fri, September 27, 13:00-20:00
+                </p>
+                <p class="partyLocation" id="eventLocation">
+                  La kass, behind saint theresa lodge
+                </p>
+              </div>
+            </div>
+            <div class="cost">
+              <div class="tixPrice">
+                <p class="price" id="ticketPrice">NGN 5,000.00</p>
+                <span class="ticketType" id="ticketType">REGULAR</span>
+              </div>
+              <div class="counter-container">
+                <button class="counter-btn" id="minus-btn">-</button>
+                <span id="counter-value">1</span>
+                <button class="counter-btn" id="plus-btn">+</button>
+              </div>
+            </div>
+          </div>
+          <!-- Your contact details -->
+          <div class="contactForm">
+            <p class="title">Billing Address</p>
+            <label for="firstName">First Name <span>*</span></label>
+            <input name="firstName" type="text" placeholder="First Name" />
+            <label for="lastName">Last Name <span>*</span></label>
+            <input name="lastName" type="text" placeholder="Last Name" />
+            <label for="email">Email <span>*</span></label>
+            <input name="email" type="text" placeholder="Email" />
+            <label for="phoneNumber">Phone Number <span>*</span></label>
+            <input name="phoneNumber" type="text" placeholder="Phone Number" />
+          </div>
+          <div class="summary">
+            <div class="title">Summary</div>
+            <div class="summaryTicketPrice smFlex">
+              <p>Ticket (<span class="count" id="ticketCount">x1</span>)</p>
+              <p class="smTicketPrice" id="summaryTicketPrice">NGN 5,000.00</p>
+            </div>
+            <div class="transactionFee smFlex">
+              <p>Transaction Fee</p>
+              <p class="smTicketPrice" id="transactionFee">NGN 250.00</p>
+            </div>
+            <div class="smTotal smFlex">
+              <p>Total</p>
+              <p class="total" id="totalPrice">NGN 5,250.00</p>
+            </div>
+            <div class="acknowledgement">
+              <input type="checkbox" id="termsCheckbox" />
+              <label for="termsCheckbox">
+                Please check to acknowledge our
+                <span class="highlight">terms and conditions</span>
+              </label>
+            </div>
+            <div class="acknowledgement">
+              <input type="checkbox" id="check" />
+              <label for="termsCheckbox">
+                Unsubscribe me from the newsletter
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="buttonContainer">
+        <button class="create-event">
+          Create Event
+          <div class="spinner"></div>
+        </button>
+      </div>
+      <footer class="footer">
+        <div class="footer-container">
+          <div class="footer-left">
+            <h3>RavePlug</h3>
+            <p>
+              Your go-to platform for organizing and managing events
+              effortlessly. Create your party, sell tickets, and enjoy the fun!
+            </p>
+          </div>
+
+          <div class="footer-center">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Create Event</a></li>
+              <li><a href="#">How It Works</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">FAQs</a></li>
+            </ul>
+          </div>
+          <div class="footer-right">
+            <h4>Follow Us</h4>
+            <div class="social-icons">
+              <a href="#"><img src="facebook-icon.png" alt="Facebook" /></a>
+              <a href="#"><img src="twitter-icon.png" alt="Twitter" /></a>
+              <a href="#"><img src="instagram-icon.png" alt="Instagram" /></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2024 RavePlug. All Rights Reserved.</p>
+        </div>
+      </footer>
+    </div>
+    <script src="./scripts/eventForm.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        const eventName = window.location.pathname.split("/").filter(Boolean);
+        const secondToLastRoute = eventName[eventName.length - 2];
+        const apiUrl = `/api/${secondToLastRoute}/tickets`;
+
+        try {
+          const response = await fetch(apiUrl);
+          if (!response.ok) {
+            throw new Error("Failed to fetch event details.");
+          }
+
+          const eventDetails = await response.json();
+
+          const ticketPrice = parseInt(eventDetails.ticketCost);
+          const transactionFee = 250; // Fixed transaction fee
+          const counterValueElement = document.getElementById("counter-value");
+          const ticketCountElement = document.getElementById("ticketCount");
+          const totalPriceElement = document.getElementById("totalPrice");
+
+          // Populate the initial event details
+          document.getElementById("eventTitle").textContent =
+            eventDetails.title;
+          document.getElementById(
+            "eventDate"
+          ).textContent = `Fri, ${eventDetails.date}, ${eventDetails.time}`;
+          document.getElementById("eventLocation").textContent =
+            eventDetails.location;
+          document.getElementById(
+            "ticketPrice"
+          ).textContent = `NGN ${ticketPrice.toLocaleString()}`;
+          document.getElementById(
+            "summaryTicketPrice"
+          ).textContent = `NGN ${ticketPrice.toLocaleString()}`;
+          document.getElementById(
+            "transactionFee"
+          ).textContent = `NGN ${transactionFee}`;
+          totalPriceElement.textContent = `NGN ${(
+            ticketPrice + transactionFee
+          ).toLocaleString()}`;
+
+          // Handle the counter buttons
+          const minusBtn = document.getElementById("minus-btn");
+          const plusBtn = document.getElementById("plus-btn");
+
+          let ticketCount = 1; // Default count
+
+          function updateTotal() {
+            // Update the counter display and calculated totals
+            counterValueElement.textContent = ticketCount;
+            ticketCountElement.textContent = `x${ticketCount}`;
+            const totalCost = ticketCount * ticketPrice + transactionFee;
+            totalPriceElement.textContent = `NGN ${totalCost.toLocaleString()}`;
+          }
+
+          // Decrease ticket count
+          minusBtn.addEventListener("click", () => {
+            if (ticketCount > 1) {
+              ticketCount--;
+              updateTotal();
+            }
+          });
+
+          // Increase ticket count
+          plusBtn.addEventListener("click", () => {
+            ticketCount++;
+            updateTotal();
+          });
+        } catch (error) {
+          console.error("Error:", error);
+          alert(
+            "An error occurred while fetching event details. Please try again later."
+          );
+        }
+      });
+    </script>
+  </body>
+</html>

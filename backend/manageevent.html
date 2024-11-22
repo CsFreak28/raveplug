@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ManageEvents</title>
+    <link rel="stylesheet" href="/css/newlandingpage.css" />
+    <link rel="stylesheet" href="/css/manageevents.css" />
+  </head>
+  <body>
+    <nav>
+      <img src="/images/ravepluglogo.png" width="100px" height="100px" alt="" />
+      <div class="rightSide">
+        <p class="time" id="currentTime">4:46 PM GMT+1</p>
+        <!-- <button class="signIn">sign In</button> -->
+      </div>
+    </nav>
+    <div class="innerCont">
+      <div class="mainContainer">
+        <div class="eventTitle">
+          <p class="partyTitle" id="eventTitle">Giddy's Party</p>
+          <a id="partyLinkATag" href="/">
+            <button class="partyLink">
+              Event Page
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                fill="#fff"
+                height="12px"
+                width="12px"
+                version="1.1"
+                id="Layer_1"
+                viewBox="0 0 330 330"
+                xml:space="preserve"
+              >
+                <path
+                  id="XMLID_222_"
+                  d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001  c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213  C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606  C255,161.018,253.42,157.202,250.606,154.389z"
+                />
+              </svg>
+            </button>
+          </a>
+        </div>
+        <div class="partyDetails">
+          <div class="partyImage">
+            <img src="/images/createpartyimage.jpeg" alt="" />
+            <div
+              class="partyLinkGlass"
+              onclick="copyToClipboard()"
+              id="partyLinkGlass"
+            >
+              <p>
+                raveplug.ng/giddysparty
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  fill="#fff"
+                  height="12px"
+                  width="12px"
+                  version="1.1"
+                  id="Layer_1"
+                  viewBox="0 0 330 330"
+                  xml:space="preserve"
+                >
+                  <path
+                    id="XMLID_222_"
+                    d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001  c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213  C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606  C255,161.018,253.42,157.202,250.606,154.389z"
+                  />
+                </svg>
+              </p>
+            </div>
+          </div>
+          <div class="otherDetails">
+            <p class="boldenText">When & Where</p>
+            <div class="flcont">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                fill="#000000"
+                version="1.1"
+                id="Capa_1"
+                width="20px"
+                height="20px"
+                viewBox="0 0 610.398 610.398"
+                xml:space="preserve"
+              >
+                <g>
+                  <g>
+                    <path
+                      d="M159.567,0h-15.329c-1.956,0-3.811,0.411-5.608,0.995c-8.979,2.912-15.616,12.498-15.616,23.997v10.552v27.009v14.052    c0,2.611,0.435,5.078,1.066,7.44c2.702,10.146,10.653,17.552,20.158,17.552h15.329c11.724,0,21.224-11.188,21.224-24.992V62.553    V35.544V24.992C180.791,11.188,171.291,0,159.567,0z"
+                    />
+                    <path
+                      d="M461.288,0h-15.329c-11.724,0-21.224,11.188-21.224,24.992v10.552v27.009v14.052c0,13.804,9.5,24.992,21.224,24.992    h15.329c11.724,0,21.224-11.188,21.224-24.992V62.553V35.544V24.992C482.507,11.188,473.007,0,461.288,0z"
+                    />
+                    <path
+                      d="M539.586,62.553h-37.954v14.052c0,24.327-18.102,44.117-40.349,44.117h-15.329c-22.247,0-40.349-19.79-40.349-44.117    V62.553H199.916v14.052c0,24.327-18.102,44.117-40.349,44.117h-15.329c-22.248,0-40.349-19.79-40.349-44.117V62.553H70.818    c-21.066,0-38.15,16.017-38.15,35.764v476.318c0,19.784,17.083,35.764,38.15,35.764h468.763c21.085,0,38.149-15.984,38.149-35.764    V98.322C577.735,78.575,560.671,62.553,539.586,62.553z M527.757,557.9l-446.502-0.172V173.717h446.502V557.9z"
+                    />
+                    <path
+                      d="M353.017,266.258h117.428c10.193,0,18.437-10.179,18.437-22.759s-8.248-22.759-18.437-22.759H353.017    c-10.193,0-18.437,10.179-18.437,22.759C334.58,256.074,342.823,266.258,353.017,266.258z"
+                    />
+                    <path
+                      d="M353.017,348.467h117.428c10.193,0,18.437-10.179,18.437-22.759c0-12.579-8.248-22.758-18.437-22.758H353.017    c-10.193,0-18.437,10.179-18.437,22.758C334.58,338.288,342.823,348.467,353.017,348.467z"
+                    />
+                    <path
+                      d="M353.017,430.676h117.428c10.193,0,18.437-10.18,18.437-22.759s-8.248-22.759-18.437-22.759H353.017    c-10.193,0-18.437,10.18-18.437,22.759S342.823,430.676,353.017,430.676z"
+                    />
+                    <path
+                      d="M353.017,512.89h117.428c10.193,0,18.437-10.18,18.437-22.759c0-12.58-8.248-22.759-18.437-22.759H353.017    c-10.193,0-18.437,10.179-18.437,22.759C334.58,502.71,342.823,512.89,353.017,512.89z"
+                    />
+                    <path
+                      d="M145.032,266.258H262.46c10.193,0,18.436-10.179,18.436-22.759s-8.248-22.759-18.436-22.759H145.032    c-10.194,0-18.437,10.179-18.437,22.759C126.596,256.074,134.838,266.258,145.032,266.258z"
+                    />
+                    <path
+                      d="M145.032,348.467H262.46c10.193,0,18.436-10.179,18.436-22.759c0-12.579-8.248-22.758-18.436-22.758H145.032    c-10.194,0-18.437,10.179-18.437,22.758C126.596,338.288,134.838,348.467,145.032,348.467z"
+                    />
+                    <path
+                      d="M145.032,430.676H262.46c10.193,0,18.436-10.18,18.436-22.759s-8.248-22.759-18.436-22.759H145.032    c-10.194,0-18.437,10.18-18.437,22.759S134.838,430.676,145.032,430.676z"
+                    />
+                    <path
+                      d="M145.032,512.89H262.46c10.193,0,18.436-10.18,18.436-22.759c0-12.58-8.248-22.759-18.436-22.759H145.032    c-10.194,0-18.437,10.179-18.437,22.759C126.596,502.71,134.838,512.89,145.032,512.89z"
+                    />
+                  </g>
+                </g>
+              </svg>
+              <p id="eventDateDisplay">{date and time}</p>
+            </div>
+            <div class="flcont">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                version="1.0"
+                id="Layer_1"
+                width="20px"
+                height="20px"
+                viewBox="0 0 64 64"
+                enable-background="new 0 0 64 64"
+                xml:space="preserve"
+              >
+                <path
+                  fill="#231F20"
+                  d="M32,0C18.746,0,8,10.746,8,24c0,5.219,1.711,10.008,4.555,13.93c0.051,0.094,0.059,0.199,0.117,0.289l16,24  C29.414,63.332,30.664,64,32,64s2.586-0.668,3.328-1.781l16-24c0.059-0.09,0.066-0.195,0.117-0.289C54.289,34.008,56,29.219,56,24  C56,10.746,45.254,0,32,0z M32,32c-4.418,0-8-3.582-8-8s3.582-8,8-8s8,3.582,8,8S36.418,32,32,32z"
+                />
+              </svg>
+              <p id="location">{location}</p>
+            </div>
+            <div class="flcont">
+              <span>by</span>
+              <p id="time">{time}</p>
+            </div>
+            <div class="flcont">
+              <p id="tickets">{tickets}</p>
+            </div>
+            <div class="flcont">
+              <p>
+                <span id="capacity">{capacity}</span>
+                people only
+              </p>
+            </div>
+          </div>
+        </div>
+        <section class="guestsSection">
+          <div class="theTitle">
+            <div>
+              <p class="sectionTitle">Guests</p>
+              <p>Invite your Guests through email or SMS.</p>
+            </div>
+            <button class="inviteButton">+ Invite Guests</button>
+          </div>
+          <div class="noguestsyet">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="#000000"
+              width="40px"
+              height="40px"
+              viewBox="0 0 1920 1920"
+            >
+              <path
+                d="M1920 428.266v1189.54l-464.16-580.146-88.203 70.585 468.679 585.904H83.684l468.679-585.904-88.202-70.585L0 1617.805V428.265l959.944 832.441L1920 428.266ZM1919.932 226v52.627l-959.943 832.44L.045 278.628V226h1919.887Z"
+                fill-rule="evenodd"
+              />
+            </svg>
+            <div>
+              <p class="mainText">No Guests Yet</p>
+              <p>You can invite people, colleagues and friends</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <script>
+      function copyToClipboard() {
+        // Get the element and its original text
+        const partyLinkGlass = document.getElementById("partyLinkGlass");
+        const originalText = partyLinkGlass.textContent;
+
+        // Copy the text to clipboard
+        navigator.clipboard
+          .writeText(originalText)
+          .then(() => {
+            // Change the text to "Copied"
+            partyLinkGlass.textContent = "Copied";
+
+            // After 3 seconds, revert to the original text
+            setTimeout(() => {
+              partyLinkGlass.textContent = originalText;
+            }, 3000);
+          })
+          .catch((err) => {
+            console.error("Failed to copy text: ", err);
+          });
+      }
+    </script>
+    <script>
+      function updateTime() {
+        const timeElement = document.getElementById("currentTime");
+        const now = new Date();
+
+        // Format the time (e.g., HH:MM AM/PM format)
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const isPM = hours >= 12;
+        const formattedHours = hours % 12 || 12; // Convert 0 to 12 for 12-hour clock
+        const formattedMinutes = minutes.toString().padStart(2, "0");
+        const timeZoneOffset = `GMT${now.getTimezoneOffset() / -60}`;
+
+        // Display the time
+        timeElement.textContent = `${formattedHours}:${formattedMinutes} ${
+          isPM ? "PM" : "AM"
+        } ${timeZoneOffset}`;
+      }
+
+      // Call the function once to set the initial time
+      updateTime();
+
+      // Update the time every minute
+      setInterval(updateTime, 60000);
+
+      // Extract the eventId from the URL
+      let eventId = window.location.pathname.split("/").filter(Boolean).pop();
+
+      // Fetch event details from the server
+      async function fetchEventDetails() {
+        try {
+          console.log("event Id", eventId);
+          const response = await fetch(`/api/events/${eventId}`);
+          if (!response.ok) {
+            throw new Error("Failed to fetch event details");
+          }
+          const eventDetails = await response.json();
+
+          // Populate the elements with fetched data
+          document.getElementById("eventTitle").textContent =
+            eventDetails.title || "Event Title";
+          document.getElementById("eventDateDisplay").textContent =
+            eventDetails.date || "Date and Time";
+          document.getElementById("location").textContent =
+            eventDetails.location || "Location";
+          document.getElementById("time").textContent =
+            eventDetails.time || "Time";
+          document.getElementById("tickets").textContent =
+            eventDetails.ticketCost
+              ? ` @₦${Number(
+                  eventDetails.ticketCost
+                ).toLocaleString()} per ticket`
+              : "Free";
+          document.getElementById("capacity").textContent =
+            eventDetails.capacity || "Capacity";
+          document.getElementById(
+            "partyLinkATag"
+          ).href = `/${convertToUrlFriendly(eventDetails.title)}/tickets`;
+        } catch (error) {
+          console.error("Error fetching event details:", error);
+          alert("Failed to load event details.");
+        }
+      }
+      function convertToUrlFriendly(text) {
+        return text
+          .replace(/'/g, "") // Remove apostrophes
+          .replace(/\s+/g, "-") // Replace spaces with dashes
+          .toLowerCase(); // Convert to lowercase if needed (optional)
+      }
+
+      // Call the function to fetch data
+      fetchEventDetails();
+    </script>
+
+    <script>
+      function formatToCurrency(value) {
+        // Ensure the input is a number
+        let number = parseInt(value, 10);
+
+        // Format the number to a currency-like string with commas
+        return number.toLocaleString();
+      }
+    </script>
+  </body>
+</html>

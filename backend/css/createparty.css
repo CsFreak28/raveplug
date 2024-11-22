@@ -1,0 +1,17 @@
+@media screen and (max-width: 600px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    /* background-color: red; */
+    /* width: 1000px; */
+    max-width: 100%;
+  }
+  .mainContainer {
+    width: 100%;
+    /* background-color: green; */
+    padding: 0rem;
+  }
+  .left-side {
+    padding: 0px;
+  }
+}

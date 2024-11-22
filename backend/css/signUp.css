@@ -1,0 +1,132 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Arial";
+}
+body {
+  background-color: #fff3e1;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  /* background-color: white; */
+  /* color: black; */
+
+  padding: 15px;
+}
+.nav-logo {
+  font-weight: bold;
+  font-size: 25px;
+  background: url(../images/ravelogo2.png);
+  background-size: cover;
+  height: 80px;
+  background-repeat: no-repeat;
+  width: 100px;
+  background-position: center;
+}
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+}
+.nav-content li {
+  padding-left: 10px;
+  padding-right: 10px;
+  list-style-type: none;
+  text-decoration: none;
+}
+.nav-content li a:hover {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  transition: ease-in-out;
+  transition: 2s;
+  text-decoration: none;
+}
+.nav-content a {
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
+}
+.nav-end {
+  display: flex;
+}
+.nav-end i {
+  padding-left: 10px;
+}
+.nav-end-btn {
+  color: #ffffff;
+  background-color: #000;
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+.nav-content2 {
+  display: none;
+}
+.bars {
+  display: none;
+}
+.cover {
+  display: flex;
+  padding: 30px;
+}
+.Signup-left {
+  background: url(../images/signup2.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 50%;
+}
+.Signup-right {
+  height: 100vh;
+  width: 50%;
+}
+.contact {
+  padding: 20px;
+  width: 100%;
+  display: flex;
+}
+.contact-txt {
+  background-color: black;
+  color: #ffffff;
+  padding: 40px;
+  line-height: 1.7;
+  border-radius: 10px;
+  width: 100%;
+}
+.contact-det {
+  border-bottom: 2px dotted white;
+  width: 350px;
+  height: 30px;
+  padding: 10px;
+  border-radius: 7px;
+}
+.contact-head {
+  text-align: center;
+  border-bottom: 2px solid white;
+}
+.Message {
+  height: 15vh;
+  width: 400px;
+  padding: 10px;
+  border-radius: 7px;
+}
+.contact-img {
+  background: url(../images/contact.png);
+  background-position: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 40%;
+  height: 50vh;
+}
+.contact-btn {
+  width: 30%;
+  background-color: white;
+  color: #000;
+  padding: 15px;
+  font-weight: bold;
+  display: block;
+  margin-top: 20px;
+  border-radius: 10px;
+}

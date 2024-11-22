@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Event</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/newlandingpage.css" />
+    <link rel="stylesheet" href="./css/createparty.css" />
+    <style>
+      body {
+        font-family: "DM Sans", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #fff3e1;
+        height: 100vh;
+      }
+      .mainContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      nav {
+        background-color: #fff3e1;
+      }
+      .container {
+        display: flex;
+        /* width: 100%; */
+        max-width: 1200px;
+        border-radius: 10px;
+        overflow: hidden;
+        /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
+        /* background-color: rgba(255, 255, 255, 0.8); */
+        backdrop-filter: blur(10px);
+      }
+      @media screen and (max-width: 600px) {
+        .container {
+          width: 100%;
+        }
+      }
+      .left-side {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .left-side img {
+        width: 100%;
+        border-radius: 7px;
+        object-fit: cover;
+      }
+
+      .right-side {
+        flex: 1.5;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .event-name,
+      .location,
+      .description,
+      .create-event {
+        width: 90%;
+        padding: 15px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
+        /* background-color: rgba(255, 255, 255, 0.9); */
+        background-color: #f9ebd8;
+        transition: 0.3s;
+      }
+      .event-name {
+        box-shadow: none;
+        background-color: transparent;
+      }
+
+      select {
+        padding: 8px;
+        background-color: #f9ebd8;
+        border: none;
+        border-radius: 7px;
+      }
+
+      .event-name:hover,
+      .location:hover,
+      .description:hover {
+        background-color: rgba(255, 255, 255, 1);
+      }
+
+      .event-name::placeholder,
+      .location::placeholder,
+      .description::placeholder {
+        color: #d1b79b;
+        font-size: 20px;
+        text-align: justify;
+        font-family: "DM Sans";
+      }
+
+      .location::placeholder,
+      .description::placeholder {
+        font-size: 0.9rem;
+      }
+      .flex-container {
+        display: flex;
+        justify-content: space-between;
+        background-color: #f9ebd8;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      .timezone {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+      }
+
+      .event-options {
+        display: flex;
+        flex-direction: column;
+        background: #f9ebd8;
+        border-radius: 8px;
+        padding: 15px;
+        gap: 10px;
+      }
+
+      .option {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 10px 0;
+      }
+
+      .create-event {
+        background-color: #ff8a00;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+        transition: 0.3s;
+      }
+
+      .create-event:hover {
+        background-color: #6b3a01;
+      }
+
+      /* Icons */
+      .icon {
+        margin-right: 10px;
+      }
+      #capacity {
+        background-color: #ff880046;
+        padding: 10px;
+        border: none;
+        width: 100px;
+        border-radius: 10px;
+      }
+      .ticketCost {
+        background-color: #ff880046;
+        padding: 10px;
+        border: none;
+        width: 100px;
+        border-radius: 10px;
+      }
+      .margin20 {
+        margin: 10rem;
+        width: 100px;
+        height: 100px;
+      }
+      .picker-container {
+        margin-bottom: 10px;
+      }
+      #date,
+      #time {
+        padding: 10px;
+        border: none;
+        background-color: #ff880046;
+        border-radius: 7px;
+        font-family: "DM Sans";
+      }
+      .create-event {
+        background-color: #ff8a00;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s;
+      }
+      /* Spinner inside button */
+      .create-event .spinner {
+        width: 16px;
+        height: 16px;
+        border: 2px solid white;
+        border-top: 2px solid transparent;
+        border-radius: 50%;
+        animation: spin 0.6s linear infinite;
+        display: none;
+        margin-left: 8px;
+      }
+      /* Spinner animation */
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <img src="/images/ravepluglogo.png" width="100px" height="100px" alt="" />
+      <div class="rightSide">
+        <p class="time">4:46 PM GMT+1</p>
+        <button class="signIn">sign In</button>
+      </div>
+    </nav>
+    <div class="mainContainer">
+      <div class="container">
+        <div class="left-side">
+          <img
+            src="./images/createpartyimage.jpeg"
+            alt="Event Image"
+            class="event-image"
+          />
+        </div>
+        <div class="right-side">
+          <div class="visibility-dropdown">
+            <label for="visibility">Visibility</label>
+            <select id="visibility">
+              <option value="public"><i class="icon-public"></i> Public</option>
+              <option value="private">
+                <i class="icon-private"></i> Private
+              </option>
+            </select>
+          </div>
+          <input
+            type="text"
+            class="event-name"
+            id="eventTitle"
+            placeholder="EVENT NAME"
+          />
+          <div class="flex-container">
+            <div class="timeline">
+              <div class="picker-container">
+                <label for="date">Select Date</label>
+                <input type="date" id="date" class="picker-input" />
+              </div>
+
+              <!-- Time Picker -->
+              <div class="picker-container">
+                <label for="time">Select Time</label>
+                <input type="time" id="time" class="picker-input" />
+              </div>
+            </div>
+
+            <div class="timezone">GMT +1:00 Lagos</div>
+          </div>
+          <input
+            type="text"
+            class="location"
+            placeholder="Location"
+            id="location"
+            aria-label="Location"
+          />
+          <input
+            type="text"
+            class="description"
+            placeholder="Add Description"
+            aria-label="Description"
+          />
+          <h3>Event Options</h3>
+          <div class="event-options">
+            <div class="option">
+              <label for="tickets">Tickets</label>
+              <select id="tickets" onchange="toggleTicketCostInput()">
+                <option value="free">Free</option>
+                <option value="paid">Paid</option>
+              </select>
+            </div>
+            <div class="option">
+              <label for="capacity">Capacity</label>
+              <input type="number" id="capacity" value="Unlimited" />
+            </div>
+          </div>
+          <div id="ticketCostDiv" style="display: none">
+            <label for="ticketCost">Ticket Cost:</label>
+            <input
+              type="number"
+              class="ticketCost"
+              id="ticketCost"
+              name="ticketCost"
+              placeholder="Enter cost"
+            />
+          </div>
+
+          <button class="create-event" onclick="submitEvent()">
+            Create Event
+            <div class="spinner"></div>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="margin20"></div>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-left">
+          <h3>RavePlug</h3>
+          <p>
+            Your go-to platform for organizing and managing events effortlessly.
+            Create your party, sell tickets, and enjoy the fun!
+          </p>
+        </div>
+
+        <div class="footer-center">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Create Event</a></li>
+            <li><a href="#">How It Works</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-right">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="#"><img src="facebook-icon.png" alt="Facebook" /></a>
+            <a href="#"><img src="twitter-icon.png" alt="Twitter" /></a>
+            <a href="#"><img src="instagram-icon.png" alt="Instagram" /></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 RavePlug. All Rights Reserved.</p>
+      </div>
+    </footer>
+    <script>
+      function toggleTicketCostInput() {
+        const ticketType = document.getElementById("tickets").value;
+        const ticketCostDiv = document.getElementById("ticketCostDiv");
+        console.log("the tickket container", ticketType);
+        if (ticketType === "paid") {
+          ticketCostDiv.style.display = "block";
+        } else {
+          ticketCostDiv.style.display = "none";
+        }
+      }
+      function submitEvent() {
+        // Show spinner
+        const createButton = document.querySelector(".create-event");
+        const spinner = document.querySelector(".create-event .spinner");
+
+        createButton.disabled = true;
+        spinner.style.display = "inline-block";
+
+        // Simulate loading and route after 2 seconds
+        const title = document.getElementById("eventTitle").value;
+        const date = document.getElementById("date").value;
+        const time = document.getElementById("time").value;
+        const location = document.getElementById("location").value;
+        const price = document.getElementById("tickets").value;
+        const capacity = document.getElementById("capacity").value;
+        const ticketCost = document.getElementById("ticketCost").value;
+        // Check if all fields are filled out
+        if (!title || !date || !location) {
+          alert("Please fill out all fields.");
+          return;
+        }
+        const eventData = {
+          title: title,
+          date: date,
+          location: location,
+          price: price,
+          capacity: capacity,
+          ticketCost: ticketCost,
+          time: time,
+        };
+        const userlogintoken = sessionStorage.getItem("authToken");
+        // Send data to the endpoint
+        fetch("/createparty", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            eventData: eventData,
+            authToken: userlogintoken,
+          }), // Convert the data to JSON
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Event created successfully", data);
+            // You can handle the response here (e.g., show a success message)
+            localStorage.setItem("eventTitle", title);
+            localStorage.setItem("eventDate", date);
+            localStorage.setItem("eventLocation", location);
+            localStorage.setItem("ticket", price);
+            localStorage.setItem("capacity", capacity);
+            localStorage.setItem("ticketCost", ticketCost);
+            localStorage.setItem("time", time);
+            // Redirect to the event display page
+            setTimeout(() => {
+              spinner.style.display = "none";
+              window.location.href = `${data["route"]}/${data["message"]}`;
+            }, 2000);
+          })
+          .catch((error) => {
+            console.error("Error creating event:", error);
+            // Handle any errors here
+          });
+        // Store event details in local storage
+      }
+    </script>
+  </body>
+</html>
+
+<!-- pk_live_27d7503db976e2c9277883fc650e725badcf1708 -->
+<!-- sk_live_414c067c64a5dae9cf45cc1467f28a4487d4c6d1 -->

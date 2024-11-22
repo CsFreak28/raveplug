@@ -1,0 +1,227 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+@font-face {
+  font-family: "Enzian";
+  src: url("../fonts/enzian.woff2");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "DM Sans";
+}
+
+body,
+html {
+  height: 100%;
+  font-family: "Arial", sans-serif;
+}
+.overallContainer {
+  background: linear-gradient(270deg, #ff7a18, #af002d, #319197, #ff7a18);
+  background-size: 800% 800%;
+  animation: gradientAnimation 15s ease infinite;
+  /* margin-bottom: 10rem; */
+}
+.gradient-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10rem;
+}
+.buttonContainer button {
+  cursor: pointer;
+}
+.content {
+  text-align: center;
+  color: white;
+}
+
+.content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.content p {
+  font-size: 1.5rem;
+}
+
+/* Keyframes for the gradient animation */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.partyDetails {
+  /* From https://css.glass */
+  padding: 1rem;
+
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.3px);
+  -webkit-backdrop-filter: blur(8.3px);
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  /* background-color: red; */
+}
+.topFlex {
+  display: flex;
+  gap: 1rem;
+}
+.partyName {
+  font-weight: 800;
+  font-size: 1.3rem;
+}
+.partyTime {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  color: rgb(30, 30, 30);
+}
+.cost {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tixPrice {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  /* background-color: red; */
+}
+.tixPrice .ticketType {
+  font-size: 0.8rem;
+  color: rgb(30, 30, 30);
+}
+.topFlex img {
+  width: 100px;
+  border-radius: 10px;
+  height: 100px;
+}
+.counter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.counter-btn {
+  padding: 2px 12px;
+  background-color: #ff6b6b;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.counter-btn:hover {
+  background-color: #ff3d3d;
+}
+
+#counter-value {
+  margin: 0 20px;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+.title {
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.contactForm {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.3px);
+  -webkit-backdrop-filter: blur(8.3px);
+  border: 1px solid rgba(255, 255, 255, 0.42);
+}
+.summary {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.3px);
+  -webkit-backdrop-filter: blur(8.3px);
+  border: 1px solid rgba(255, 255, 255, 0.42);
+}
+label {
+  display: block;
+  margin-top: 1.4rem;
+}
+input {
+  padding: 0.6rem;
+  border: none;
+  width: 100%;
+  margin-top: 0.6rem;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.18);
+}
+input::placeholder {
+  color: rgb(55, 55, 55);
+}
+label span {
+  color: pink;
+}
+.smFlex {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.3rem;
+}
+.total {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.acknowledgement {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+
+#termsCheckbox {
+  margin-right: 10px;
+  width: 20px;
+  border: none;
+  height: 20px;
+  background-color: rgb(196, 196, 196);
+}
+#check {
+  margin-right: 10px;
+  width: 15px;
+  height: 15px;
+}
+.highlight {
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: rgb(255, 130, 151); /* This is a blue color, can be changed */
+  text-decoration: underline;
+  cursor: pointer;
+}
+#raveplug {
+  margin-bottom: 3rem;
+  display: inline-block;
+  font-size: 2rem;
+}
+@media screen and (max-width: 450px) {
+  .center {
+    width: 100%;
+    padding: 1rem;
+  }
+  .partyDetails {
+    width: 100%;
+  }
+}
