@@ -124,6 +124,7 @@ footer {
   color: #fff;
   padding: 2rem 4rem;
   text-align: left;
+  overflow: hidden;
 }
 
 .footer-container {
