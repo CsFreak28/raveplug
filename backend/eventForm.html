@@ -6,6 +6,7 @@
     <title>Event Checkout</title>
     <link rel="stylesheet" href="/css/eventCheckout.css" />
     <link rel="stylesheet" href="/css/newlandingpage.css" />
+    <script src="https://js.paystack.co/v2/inline.js"></script>
     <style>
       .create-event {
         width: 90%;
@@ -99,7 +100,7 @@
         </div>
       </div>
       <div class="buttonContainer">
-        <button class="create-event">
+        <button class="create-event" id="pay-now">
           Create Event
           <div class="spinner"></div>
         </button>
@@ -140,6 +141,58 @@
       </footer>
     </div>
     <script src="./scripts/eventForm.js"></script>
+    <script>
+      document.getElementById("pay-now").addEventListener("click", function () {
+        // Replace this with your actual public key
+        const paystackPublicKey =
+          "pk_live_27d7503db976e2c9277883fc650e725badcf1708";
+
+        // Retrieve user inputs
+        const email = document
+          .querySelector("input[name='email']")
+          .value.trim();
+        const ticketPrice = parseInt(
+          document
+            .getElementById("ticketPrice")
+            .textContent.replace(/[^0-9]/g, "")
+        );
+        const transactionFee = 250; // Fixed transaction fee
+        const ticketCount = parseInt(
+          document.getElementById("counter-value").textContent
+        );
+        const totalAmount = ticketPrice * ticketCount + transactionFee;
+
+        // Validate inputs
+        if (!email || !/\S+@\S+\.\S+/.test(email)) {
+          alert("Please enter a valid email address.");
+          return;
+        }
+        if (ticketCount < 1) {
+          alert("Please select at least one ticket.");
+          return;
+        }
+
+        const paymentDetails = {
+          key: paystackPublicKey,
+          email: email, // User's email
+          amount: totalAmount * 100, // Amount in kobo (NGN)
+          currency: "NGN",
+          ref: "PSK_" + Math.floor(Math.random() * 1000000000 + 1), // Unique transaction reference
+          callback: function (response) {
+            // Success: Verify transaction on your backend
+            alert("Transaction Successful! Reference: " + response.reference);
+          },
+          onClose: function () {
+            // User cancels payment
+            alert("Payment canceled by user.");
+          },
+        };
+
+        const paystackPopup = new PaystackPop();
+        paystackPopup.newTransaction(paymentDetails);
+      });
+    </script>
+
     <script>
       document.addEventListener("DOMContentLoaded", async () => {
         const eventName = window.location.pathname.split("/").filter(Boolean);
