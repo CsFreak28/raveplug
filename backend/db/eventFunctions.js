@@ -5,6 +5,7 @@ export async function storeEventDetails(eventDetails) {
   const docRef = doc(db, "events", eventId);
   setDoc(docRef, {
     ...eventDetails,
+    // creator: creator,
     eventurl: convertToUrlFriendly(eventDetails["title"]),
   });
 

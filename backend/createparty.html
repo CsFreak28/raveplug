@@ -456,7 +456,7 @@
         };
 
         const userlogintoken = sessionStorage.getItem("authToken");
-
+        const email = sessionStorage.getItem("email");
         // Send data to the backend
         fetch("/createparty", {
           method: "POST",
@@ -466,6 +466,7 @@
           body: JSON.stringify({
             eventData,
             authToken: userlogintoken,
+            email: email,
           }),
         })
           .then((response) => response.json())

@@ -134,11 +134,14 @@ loginForm.addEventListener("submit", async (e) => {
   }
 
   if (isValid) {
+    const url = window.location.href;
+    const urlObj = new URL(url);
+    const returnToValue = urlObj.searchParams.get("returnTo");
     try {
       const response = await fetch("/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, returnToValue }),
       });
 
       const data = await response.json();
@@ -148,11 +151,13 @@ loginForm.addEventListener("submit", async (e) => {
         sessionStorage.setItem("email", email);
         sessionStorage.setItem("password", password);
         loginForm.reset();
-        const url = window.location.href;
-        const urlObj = new URL(url);
-        const returnToValue = urlObj.searchParams.get("returnTo");
-        window.location.href = `manageevent/${returnToValue}`;
-        handleLoadingState(submitButton, false);
+        if (returnToValue) {
+          window.location.href = `manageevent/${returnToValue}`;
+          handleLoadingState(submitButton, false);
+        } else {
+          window.location.href = `manageevent/${data.currentEvent}`;
+          handleLoadingState(submitButton, false);
+        }
 
         // Use URLSearchParams to get the 'returnTo' parameter
         // Redirect or perform any post-login actions here

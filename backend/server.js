@@ -6,6 +6,7 @@ import { getEventDetails, storeEventDetails } from "./db/eventFunctions.js";
 import { signup } from "./db/signup.js";
 import { loginUser } from "./db/login.js";
 import { getPartyName } from "./db/getterFunctions.js";
+import { addEventToUser } from "./db/addEventTouser.js";
 
 const app = express();
 const port = 3000;
@@ -31,9 +32,9 @@ app.get("/auth", (req, res) => {
   res.sendFile(path.join(__dirname, "authpage.html"));
 });
 app.post("/signup", async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, eventId } = req.body;
   console.log("before returning", email, password);
-  const value = await signup(email, password);
+  const value = await signup(email, password, eventId);
   console.log("this is the returned value", value);
   if (value.success) {
     res.status(200).send(value);
@@ -42,8 +43,8 @@ app.post("/signup", async (req, res) => {
   }
 });
 app.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-  const value = await loginUser(email, password);
+  const { email, password, eventId } = req.body;
+  const value = await loginUser(email, password, null, eventId);
   console.log("this is the returned value", value);
 
   if (value.success) {
@@ -75,7 +76,7 @@ app.get("/:partyName/tickets", async (req, res) => {
 });
 app.get("/api/events/:eventId", async (req, res) => {
   console.log("salav");
-  const { eventId } = req.params;
+  const { eventId, email } = req.params;
   console.log("thisis the event Id first of all", eventId);
   try {
     const eventDetails = await getEventDetails(eventId); // Fetch event details
@@ -100,13 +101,14 @@ app.get("/eventDetails/:eventId", (req, res) => {
 });
 
 app.post("/createparty", async (req, res) => {
-  const { eventData, authToken } = req.body; // Assuming body-parser is used
+  const { eventData, authToken, email } = req.body; // Assuming body-parser is used
   // Process the data (e.g., save it to a database)
   console.log("the event data", eventData);
   const eventId = await storeEventDetails(eventData);
   // Send a response
   console.log("thisis the event Id", eventId);
   if (authToken) {
+    addEventToUser(email, eventId);
     res.status(200).json({ route: "manageevent", message: eventId });
   } else {
     res.status(200).json({ route: `auth?returnTo=${eventId}`, message: "" });
