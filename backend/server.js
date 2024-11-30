@@ -32,6 +32,7 @@ app.get("/auth", (req, res) => {
 });
 app.post("/signup", async (req, res) => {
   const { email, password } = req.body;
+  console.log("before returning", email, password);
   const value = await signup(email, password);
   console.log("this is the returned value", value);
   if (value.success) {
