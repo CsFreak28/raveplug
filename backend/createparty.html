@@ -223,7 +223,7 @@
       <img src="/images/ravepluglogo.png" width="100px" height="100px" alt="" />
       <div class="rightSide">
         <p class="time">4:46 PM GMT+1</p>
-        <button class="signIn">sign In</button>
+        <!-- <button class="signIn">sign In</button> -->
       </div>
     </nav>
     <div class="mainContainer">
@@ -289,6 +289,26 @@
                 <option value="paid">Paid</option>
               </select>
             </div>
+            <div id="ticketSection" style="display: none">
+              <h4>Ticket Types</h4>
+              <div id="ticketsContainer"></div>
+              <button
+                type="button"
+                onclick="addTicket()"
+                style="
+                  margin-top: 10px;
+                  padding: 10px;
+                  background-color: #007bff;
+                  color: #fff;
+                  border: none;
+                  border-radius: 5px;
+                  cursor: pointer;
+                "
+              >
+                Add Ticket
+              </button>
+            </div>
+
             <div class="option">
               <label for="capacity">Capacity</label>
               <input type="number" id="capacity" value="Unlimited" />
@@ -349,14 +369,42 @@
       </div>
     </footer>
     <script>
+      function toggleTicketCostInput() {}
+
+      function addTicket() {
+        const ticketsContainer = document.getElementById("ticketsContainer");
+
+        const ticketDiv = document.createElement("div");
+        ticketDiv.classList.add("ticket");
+
+        ticketDiv.innerHTML = `
+        <div class="aTicket">
+          
+    <input type="text" placeholder="Ticket Name" class="ticket-name" required />
+    <input type="number" placeholder="Price" class="ticket-price" required />
+    <input type="number" placeholder="Quantity" class="ticket-quantity" required />
+    <textarea placeholder="Perks" class="ticket-perks"></textarea>
+    <button type="button" class="remove-ticket-btn" onclick="removeTicket(this)">Remove</button>
+  `;
+
+        ticketsContainer.appendChild(ticketDiv);
+      }
+
+      function removeTicket(button) {
+        const ticketDiv = button.parentElement;
+        ticketDiv.remove();
+      }
+    </script>
+    <script>
       function toggleTicketCostInput() {
         const ticketType = document.getElementById("tickets").value;
-        const ticketCostDiv = document.getElementById("ticketCostDiv");
-        console.log("the tickket container", ticketType);
+        const ticketSection = document.getElementById("ticketSection");
+
         if (ticketType === "paid") {
-          ticketCostDiv.style.display = "block";
+          ticketSection.style.display = "block";
         } else {
-          ticketCostDiv.style.display = "none";
+          ticketSection.style.display = "none";
+          document.getElementById("ticketsContainer").innerHTML = ""; // Clear tickets
         }
       }
       function submitEvent() {
@@ -367,51 +415,66 @@
         createButton.disabled = true;
         spinner.style.display = "inline-block";
 
-        // Simulate loading and route after 2 seconds
+        // Collect event data
         const title = document.getElementById("eventTitle").value;
         const date = document.getElementById("date").value;
         const time = document.getElementById("time").value;
         const location = document.getElementById("location").value;
         const price = document.getElementById("tickets").value;
         const capacity = document.getElementById("capacity").value;
-        const ticketCost = document.getElementById("ticketCost").value;
-        // Check if all fields are filled out
+
+        // Validate required fields
         if (!title || !date || !location) {
-          alert("Please fill out all fields.");
+          alert("Please fill out all required fields.");
+          createButton.disabled = false;
+          spinner.style.display = "none";
           return;
         }
+
+        // Collect ticket data
+        const tickets = [];
+        const ticketElements = document.querySelectorAll(".ticket");
+        ticketElements.forEach((ticket) => {
+          const name = ticket.querySelector(".ticket-name").value;
+          const price = ticket.querySelector(".ticket-price").value;
+          const quantity = ticket.querySelector(".ticket-quantity").value;
+          const perks = ticket.querySelector(".ticket-perks").value;
+
+          if (name && price && quantity) {
+            tickets.push({ name, price, quantity, perks });
+          }
+        });
+
         const eventData = {
-          title: title,
-          date: date,
-          location: location,
-          price: price,
-          capacity: capacity,
-          ticketCost: ticketCost,
-          time: time,
+          title,
+          date,
+          time,
+          location,
+          price,
+          capacity,
+          tickets, // Include all ticket data
         };
+
         const userlogintoken = sessionStorage.getItem("authToken");
-        // Send data to the endpoint
+
+        // Send data to the backend
         fetch("/createparty", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            eventData: eventData,
+            eventData,
             authToken: userlogintoken,
-          }), // Convert the data to JSON
+          }),
         })
           .then((response) => response.json())
           .then((data) => {
             console.log("Event created successfully", data);
-            // You can handle the response here (e.g., show a success message)
             localStorage.setItem("eventTitle", title);
             localStorage.setItem("eventDate", date);
             localStorage.setItem("eventLocation", location);
-            localStorage.setItem("ticket", price);
-            localStorage.setItem("capacity", capacity);
-            localStorage.setItem("ticketCost", ticketCost);
-            localStorage.setItem("time", time);
+
             // Redirect to the event display page
             setTimeout(() => {
               spinner.style.display = "none";
@@ -420,9 +483,7 @@
           })
           .catch((error) => {
             console.error("Error creating event:", error);
-            // Handle any errors here
           });
-        // Store event details in local storage
       }
     </script>
   </body>

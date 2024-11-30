@@ -47,8 +47,12 @@
             </div>
             <div class="cost">
               <div class="tixPrice">
-                <p class="price" id="ticketPrice">NGN 5,000.00</p>
-                <span class="ticketType" id="ticketType">REGULAR</span>
+                <div class="ticketTypeContainer">
+                  <label for="ticketType">Ticket Type:</label>
+                  <select id="ticketType" class="ticketType">
+                    <!-- Options will be populated dynamically -->
+                  </select>
+                </div>
               </div>
               <div class="counter-container">
                 <button class="counter-btn" id="minus-btn">-</button>
@@ -101,7 +105,7 @@
       </div>
       <div class="buttonContainer">
         <button class="create-event" id="pay-now">
-          Create Event
+          Pay For Tickets
           <div class="spinner"></div>
         </button>
       </div>
@@ -195,25 +199,16 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", async () => {
-        const eventName = window.location.pathname.split("/").filter(Boolean);
-        const secondToLastRoute = eventName[eventName.length - 2];
-        const apiUrl = `/api/${secondToLastRoute}/tickets`;
+        const apiUrl = `/api/${
+          window.location.pathname.split("/").filter(Boolean).slice(-2)[0]
+        }/tickets`;
 
         try {
           const response = await fetch(apiUrl);
-          if (!response.ok) {
-            throw new Error("Failed to fetch event details.");
-          }
-
+          if (!response.ok) throw new Error("Failed to fetch event details.");
           const eventDetails = await response.json();
 
-          const ticketPrice = parseInt(eventDetails.ticketCost);
-          const transactionFee = 250; // Fixed transaction fee
-          const counterValueElement = document.getElementById("counter-value");
-          const ticketCountElement = document.getElementById("ticketCount");
-          const totalPriceElement = document.getElementById("totalPrice");
-
-          // Populate the initial event details
+          // Populate event details
           document.getElementById("eventTitle").textContent =
             eventDetails.title;
           document.getElementById(
@@ -221,46 +216,63 @@
           ).textContent = `Fri, ${eventDetails.date}, ${eventDetails.time}`;
           document.getElementById("eventLocation").textContent =
             eventDetails.location;
-          document.getElementById(
-            "ticketPrice"
-          ).textContent = `NGN ${ticketPrice.toLocaleString()}`;
-          document.getElementById(
-            "summaryTicketPrice"
-          ).textContent = `NGN ${ticketPrice.toLocaleString()}`;
-          document.getElementById(
-            "transactionFee"
-          ).textContent = `NGN ${transactionFee}`;
-          totalPriceElement.textContent = `NGN ${(
-            ticketPrice + transactionFee
-          ).toLocaleString()}`;
 
-          // Handle the counter buttons
-          const minusBtn = document.getElementById("minus-btn");
-          const plusBtn = document.getElementById("plus-btn");
+          const ticketTypeSelect = document.getElementById("ticketType");
+          const counterValueElement = document.getElementById("counter-value");
+          const ticketCountElement = document.getElementById("ticketCount");
+          const totalPriceElement = document.getElementById("totalPrice");
+          const transactionFeeElement =
+            document.getElementById("transactionFee");
+          const summaryTicketPrice =
+            document.getElementById("summaryTicketPrice");
 
-          let ticketCount = 1; // Default count
+          let ticketCount = 1; // Default ticket count
+          const transactionFee = 250; // Fixed fee
 
-          function updateTotal() {
-            // Update the counter display and calculated totals
-            counterValueElement.textContent = ticketCount;
-            ticketCountElement.textContent = `x${ticketCount}`;
+          // Populate ticket types
+          eventDetails.tickets.forEach((ticket) => {
+            const option = document.createElement("option");
+            option.value = ticket.price;
+            option.dataset.name = ticket.name;
+            option.dataset.perks = ticket.perks;
+            option.textContent = `${ticket.name} - NGN ${parseInt(
+              ticket.price
+            ).toLocaleString()}`;
+            ticketTypeSelect.appendChild(option);
+          });
+
+          // Update pricing and totals
+          function updatePricing() {
+            const selectedOption =
+              ticketTypeSelect.options[ticketTypeSelect.selectedIndex];
+            const ticketPrice = parseInt(selectedOption.value);
             const totalCost = ticketCount * ticketPrice + transactionFee;
+
+            // Update DOM elements
+            summaryTicketPrice.textContent = `NGN ${ticketPrice.toLocaleString()}`;
+            transactionFeeElement.textContent = `NGN ${transactionFee}`;
             totalPriceElement.textContent = `NGN ${totalCost.toLocaleString()}`;
+            ticketCountElement.textContent = `x${ticketCount}`;
           }
 
-          // Decrease ticket count
-          minusBtn.addEventListener("click", () => {
+          // Handle ticket type changes
+          ticketTypeSelect.addEventListener("change", updatePricing);
+
+          // Counter button logic
+          document.getElementById("minus-btn").addEventListener("click", () => {
             if (ticketCount > 1) {
               ticketCount--;
-              updateTotal();
+              updatePricing();
             }
           });
 
-          // Increase ticket count
-          plusBtn.addEventListener("click", () => {
+          document.getElementById("plus-btn").addEventListener("click", () => {
             ticketCount++;
-            updateTotal();
+            updatePricing();
           });
+
+          // Initial pricing update
+          updatePricing();
         } catch (error) {
           console.error("Error:", error);
           alert(

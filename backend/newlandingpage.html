@@ -11,7 +11,7 @@
       <img src="/images/ravepluglogo.png" width="100px" height="100px" alt="" />
       <div class="rightSide">
         <!-- <p class="time">4:46 PM GMT+1</p> -->
-        <button class="signIn">sign In</button>
+        <button class="signIn open-popup-btn">sign In</button>
       </div>
     </nav>
     <div class="mainFlex">
@@ -26,7 +26,7 @@
             <a href="/createparty">
               <button class="create-party-btn">Create my party</button>
             </a>
-            <button class="create-party-btn" id="attendparty">
+            <button class="create-party-btn open-popup-btn" id="attendparty">
               Attend a party
             </button>
           </div>
@@ -69,11 +69,37 @@
           </div>
         </div>
       </div>
-
+      <div class="popup-overlay" id="popup">
+        <div class="popup-content">
+          <h2>Coming Soon</h2>
+          <p>This feature is not yet available, but it's on the way!</p>
+          <button class="close-popup-btn coolBtn">Okay, cool</button>
+        </div>
+      </div>
       <div class="footer-bottom">
         <p>&copy; 2024 RavePlug. All Rights Reserved.</p>
       </div>
     </footer>
     <script src="/scripts/animation.js"></script>
+    <script>
+      // Get references to elements
+      const openPopupBtns = [...document.querySelectorAll(".open-popup-btn")];
+      const popup = document.getElementById("popup");
+      const closePopupBtn = document.querySelector(".close-popup-btn");
+
+      // Show popup when button is clicked
+      for (let i = 0; i < openPopupBtns.length; i++) {
+        let openPopupBtn = openPopupBtns[i];
+        console.log("gideon", openPopupBtn);
+        openPopupBtn.addEventListener("click", () => {
+          popup.style.display = "flex";
+        });
+      }
+
+      // Hide popup when "Okay, cool" is clicked
+      closePopupBtn.addEventListener("click", () => {
+        popup.style.display = "none";
+      });
+    </script>
   </body>
 </html>

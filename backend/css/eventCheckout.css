@@ -25,12 +25,20 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  /* overflow-y: scroll; */
+  /* background-color: red; */
 }
 .buttonContainer {
   display: flex;
   justify-content: center;
   margin-bottom: 10rem;
+}
+select {
+  padding: 8px;
+  background-color: #f9ebd852;
+  border: none;
+  border-radius: 7px;
 }
 .buttonContainer button {
   cursor: pointer;
