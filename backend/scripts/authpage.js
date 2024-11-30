@@ -145,6 +145,8 @@ loginForm.addEventListener("submit", async (e) => {
       if (response.ok) {
         alert("Login successful!");
         sessionStorage.setItem("authToken", generateRandomString());
+        sessionStorage.setItem("email", email);
+        sessionStorage.setItem("password", password);
         loginForm.reset();
         const url = window.location.href;
         const urlObj = new URL(url);
